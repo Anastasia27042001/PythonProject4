@@ -1,22 +1,27 @@
 def validate_user_data(data: dict):
-
-    if not isinstance(data.get('first_name'), str) and len(data['first_name'].strip()) == 0:
+    print("Данные на входе:", data)
+    first_name = data.get('first_name')
+    if not isinstance(first_name, str) or not first_name.strip():
         raise ValueError('Поле first_name должно быть непустой строкой')
 
-    if not isinstance(data.get('last_name'), str) and len(data['last_name'].strip()) == 0:
+    last_name = data.get('last_name')
+    if not isinstance(last_name, str) or not last_name.strip():
         raise ValueError('Поле last_name должно быть непустой строкой')
 
-    if not isinstance(data.get('age'), int) and data['age'] < 18 or data['age'] > 99:
+    age = data.get('age')
+    if not isinstance(age, int) or age < 18 or age > 99:
         raise ValueError('Возраст должен быть числом от 18 до 99')
 
-    if not isinstance(data.get('phone_number'), str):
+    phone_number = data.get('phone_number')
+    if not isinstance(phone_number, str) or (9 <= len(phone_number) <= 18) == False :
         raise ValueError('Номер телефона должен быть строкой')
 
-    if not isinstance(data.get('city'), str) and len(data['city'].strip()) == 0:
-        raise ValueError('Город должен быть непустой строкой')
+    address = data.get('address')
+    if not isinstance(address, str):
+        raise ValueError('Адрес должен быть строкой')
+    if not address.strip():
+        raise ValueError('Адрес не может быть пустым')
 
-    if data.get('address') is None:
-        raise ValueError('Адрес не может быть None')
-
-    if "email" in data and ''@'' not in data['email']:
+    email = data.get('email')
+    if email and '@' not in email:
         raise ValueError('Email должен содержать @')
