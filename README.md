@@ -28,4 +28,4 @@
 - Поиск по адресу
 
 Как запустить тесты - pytest test_api.py -v
-Как запустить сервер - uvicorn main:app --reload
+Как запустить сервер - uvicorn main:app --reload --host 127.0.0.1 --port 8000
